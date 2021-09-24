@@ -1,8 +1,11 @@
 import time
-
-array = [10,-2,8,0,4,9,1,-1,-10,2,15,8,3,-7,25,37,-25,5,11,0]
+import numpy as np
 
 ## Functions
+
+def GenerateRandomArray(l,h,n):
+    array= np.random.randint(l,h,n)
+    return array
 
 def CurrentNanoSeconds():
     return round(time.time() * 10000000000)
@@ -34,23 +37,26 @@ def InsertionSort(array):
 
 ##
 
-start = time.time()
+l= -1500
+h= 1500
+n= 1000
+
+array = GenerateRandomArray(l,h,n)
+
+start = CurrentNanoSeconds()
 arraySelectSort = SelectionSort(array)
-end = time.time()
+end = CurrentNanoSeconds()
 executionTimeSelec = end-start
-executionTimeSelec = CurrentNanoSeconds()
 
-start = time.time()
+start = CurrentNanoSeconds()
 arrayBubbleSort = BubbleSort(array)
-end = time.time()
+end = CurrentNanoSeconds()
 executionTimeBubb = end-start
-executionTimeBubb = CurrentNanoSeconds()
 
-start = time.time()
+start = CurrentNanoSeconds()
 arrayInsertionSort = InsertionSort(array)
-end = time.time()
+end = CurrentNanoSeconds()
 executionTimeInser = end-start
-executionTimeInser = CurrentNanoSeconds()
 
 print(f'Selection Sorted array: {arraySelectSort}')                
 print(f'Selection sorting took: {executionTimeSelec} seconds')
