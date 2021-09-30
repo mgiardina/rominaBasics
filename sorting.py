@@ -26,13 +26,11 @@ def BubbleSort(array):
 
 def InsertionSort(array):
     for i in range(1,len(array)):
-    #    j = i
-    #    while j> 0 and array[j-1] > array[j]:
-    #        array[j] , array[j-1] = array[j-1] , array[j]
-    #        j = j-1
-    #    i = i+1
-        if array[i-1] > array[i]:
-            array[i] , array[i-1] = array[i-1] , array[i]
+        j = i
+        while j> 0 and array[j-1] > array[j]:
+            array[j] , array[j-1] = array[j-1] , array[j]
+            j = j-1
+        i = i+1
     return array
 
 ##
