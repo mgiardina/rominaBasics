@@ -1,10 +1,10 @@
 import time
-import numpy as np
+import random
 
 ## Functions
 
-def GenerateRandomArray(l,h,n):
-    array= np.random.randint(l,h,n)
+def GenerateRandomArray(n):
+    array = [random.randint(-500,500) for i in range(n)]
     return array
 
 def CurrentNanoSeconds():
@@ -37,11 +37,9 @@ def InsertionSort(array):
 
 ##
 
-l= -1500
-h= 1500
 n= 1000
 
-array = GenerateRandomArray(l,h,n)
+array = GenerateRandomArray(n)
 
 start = CurrentNanoSeconds()
 arraySelectSort = SelectionSort(array)
