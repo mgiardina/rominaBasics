@@ -1,20 +1,16 @@
-import time
-import random
+from randomarray import GenerateRandomArray
+from nanoseconds import CurrentNanoSeconds
 
-## Functions
-
-def GenerateRandomArray(n):
-    array = [random.randint(-500,500) for i in range(n)]
-    return array
-
-def CurrentNanoSeconds():
-    return round(time.time() * 10000000000)
 
 def SelectionSort(array):
     for i in range(len(array)-1):
+        minimun = i
+        
         for j in range(i+1,len(array)):
-            if array[j] < array[i]:
-               array[j], array[i] = array[i], array[j]
+            if array[j] < array[minimun]:
+                minimun =j
+        
+        array[minimun], array[i] = array[i], array[minimun]
     return array
 
 def BubbleSort(array):
@@ -26,11 +22,12 @@ def BubbleSort(array):
 
 def InsertionSort(array):
     for i in range(1,len(array)):
-        j = i
-        while j> 0 and array[j-1] > array[j]:
-            array[j] , array[j-1] = array[j-1] , array[j]
-            j = j-1
-        i = i+1
+        key = array[i]
+        j = i-1
+        while j> 0 and key < array[j]:
+            array[j+1] = array[j]
+            j -= 1
+        array[j+1]=key
     return array
 
 ##
