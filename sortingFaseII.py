@@ -1,26 +1,39 @@
 from randomarray import GenerateRandomArray
 from nanoseconds import CurrentNanoSeconds
 
-## El merge divide en 2 partes el array hasta que queda un solo elemento (por
-# eso el len(array)> 1 y parar la recursion). Va partiendo el array
-# hasta que queda un elemento. Lo que no se es como unir despues
-# la parte derecha y la izquierda, me quede en que queda un elemento
-# y hay que empezar a unirlos
-
 def MergeSort(array):
     if len(array) > 1:
-        splitArray = len(array)//2
+        splitArray = len(array)//2  # divides the array
 
         L = array[:splitArray]
         R = array[splitArray:]
         MergeSort(L)
         MergeSort(R)
+    
+        indexL = indexR = indexM = 0 # index for right, index for left, index for merge
+        while(indexL < len(L) and indexR < len(R)):
+            if(L[indexL] < R[indexR]):
+                array[indexM] = L[indexL]
+                indexL += 1
+            else:
+                array[indexM] = R[indexR]
+                indexR += 1
+            indexM += 1
 
-# En este creo que me maree y ya no supe donde hacer la recursion
-# este lo base en el video que me habias pasado.        
+        # if any elements are left either right or left
 
-def QuickSort(array):
-    pivot = array[-1]
+        while(indexL < len(L)):
+            array[indexM] = L[indexL]
+            indexL += 1
+            indexM += 1
+
+        while indexR < len(R):
+            array[indexM] = R[indexR]
+            indexR += 1
+            indexM += 1 
+    
+def quickSort(array, indexPivot):
+    pivot = array[indexPivot]
     for index in range(len(array)-1):
         for loop in range(0,len(array)-1):
             if array(loop) < pivot:
@@ -29,8 +42,17 @@ def QuickSort(array):
         
         array[index+1],pivot = pivot , array[index+1]    
 
+# quickSort()
+# Aca segun el video hay que hacer lo mismo desde 
+# donde quedo el pivot, que sería index+1, hacia la derecha
+# y a la izquierda, me confunden los indices
+# no estoy segura si es quickSort desde 0 a index+1
+# y quicksort desde index+1 hasta el final.  
+
 n= 10
 
 array = GenerateRandomArray(n)  
+print(array)
 
 MergeSort(array)
+print(array)
