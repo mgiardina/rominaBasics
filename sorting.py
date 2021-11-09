@@ -11,14 +11,16 @@ def SelectionSort(array):
                 minimun =j
         
         array[minimun], array[i] = array[i], array[minimun]
-    return array
+    arraySort = array
+    return arraySort
 
 def BubbleSort(array):
     for i in range(len(array)):
         for j in range(0,len(array)-i-1):
             if array[j] > array[j+1]:
                 array[j] , array[j+1] = array[j+1] , array[j] 
-    return array
+    arraySort = array
+    return arraySort
 
 def InsertionSort(array):
     for i in range(1,len(array)):
@@ -28,7 +30,9 @@ def InsertionSort(array):
             array[j+1] = array[j]
             j -= 1
         array[j+1]=key
-    return array
+    
+    arraySort = array
+    return arraySort
 
 
 def MergeSort(array):
@@ -59,7 +63,10 @@ def MergeSort(array):
             array[indexM] = R[indexR]
             indexR += 1
             indexM += 1 
-    
+
+    arraySort = array
+    return arraySort
+
 def partition(array, low, indexPivot):
     index = low-1
     pivot = array[indexPivot]  
@@ -80,9 +87,10 @@ def QuickSort(array, low, indexPivot):
 
 ##
 
-n= 10000
+n= 100
 
 array = GenerateRandomArray(n)
+arrayQuick = array #recursive issue
 
 start = CurrentNanoSeconds()
 arraySelectSort = SelectionSort(array)
@@ -99,31 +107,27 @@ arrayInsertionSort = InsertionSort(array)
 end = CurrentNanoSeconds()
 executionTimeInser = end-start
 
-arrayMerge = GenerateRandomArray(n)
-
 start = CurrentNanoSeconds()
-MergeSort(arrayMerge)
+arrayMergeSort = MergeSort(array)
 end = CurrentNanoSeconds()
 executionTimeMerge = end-start
-
-arrayQuick = GenerateRandomArray(n)
 
 start = CurrentNanoSeconds()
 QuickSort(arrayQuick,0,len(arrayQuick)-1)
 end = CurrentNanoSeconds()
 executionTimeQuick = end-start
 
-#print(f'Selection Sorted array: {arraySelectSort}')                
+print(f'Selection Sorted array: {arraySelectSort}')                
 print(f'Selection sorting took: {executionTimeSelec} seconds')
 
-#print(f'Bubble Sorted array:{arrayBubbleSort}')
+print(f'Bubble Sorted array:{arrayBubbleSort}')
 print(f'Bubble sorting took: {executionTimeBubb} seconds')
 
-#print(f'Insertion Sorted array:{arrayInsertionSort}')
+print(f'Insertion Sorted array:{arrayInsertionSort}')
 print(f'Insertion sorting took: {executionTimeInser} seconds')
 
-#print(f'Merge Sorted array: {arrayMerge}')                
+print(f'Merge Sorted array: {arrayMergeSort}')                
 print(f'Merge sorting took: {executionTimeMerge} seconds')
 
-#print(f'Quick Sorted array: {arrayQuick}')                
+print(f'Quick Sorted array: {arrayQuick}')                
 print(f'Quick sorting took: {executionTimeQuick} seconds')
