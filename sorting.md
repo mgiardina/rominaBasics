@@ -38,4 +38,4 @@ This algorithm uses a pivot element, it can be the last, first or a random eleme
 ![performance](performance_sorting.png)
 
 
-  **Best choise**: *Insertion* algorithm for its performance in small arrays and *Quick* and *Merge* when million items array are used.
+  **Best choice**: *Insertion* algorithm for its performance in small arrays and *Quick* and *Merge* when million items array are used.
