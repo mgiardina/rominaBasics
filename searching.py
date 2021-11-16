@@ -10,7 +10,9 @@ def linearSearch(array,value):
             indexSearch = None
     return indexSearch
 
-array = GenerateRandomArray(20)
+n = 20
+
+array = GenerateRandomArray(n)
 
 linearIndex = linearSearch(array,5)
 
