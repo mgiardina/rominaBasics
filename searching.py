@@ -10,10 +10,6 @@ def linearSearch(array,value):
             indexSearch = None
     return indexSearch
 
-def binarySearch(array):
-    
-    return
-
 n = 20
 
 array = GenerateRandomArray(n)
