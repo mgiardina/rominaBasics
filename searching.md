@@ -1,7 +1,7 @@
 # Searching algorithms 
 
 ## Linear searching
-Linear search algorithm is the simplest one. Sequentially read each element one by one on a given array until desired element is found.
+Linear search algorithm is the simplest one. Sequentially read each element one by one on a given array until desired element is found. This method may be not effective for arrays with large number of items.
 
 <img src="https://www.tutorialspoint.com/data_structures_algorithms/images/linear_search.gif" width="300" height="100"/>
 
