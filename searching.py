@@ -3,33 +3,39 @@ from nanoseconds import CurrentNanoSeconds
 from sorting import *
  
 
-def linearSearch(array,value):
+def linearSearch(array,searchedElement):
     for i in range(len(array)):
-        print(array)
-        if array[i] == value:
+        if array[i] == searchedElement:
             indexSearch = i
             return indexSearch
 
-def binarySearch(array,value):
-
+def binarySearch(array,searchedElement, count = 1, index = 0):
+    print(array)
     high = len(array)
     mid = high//2
-
+    #print('comienzo',array[mid],mid) ##test
     if high > 0:
-        if array[mid] == value:
-            return 'found'
-        elif array[mid] < value:
-                low = mid + 1
-                array = array[low:high]
-                return binarySearch(array,value)
+        if array[mid] == searchedElement:
+            index = index + mid 
+            return f'found at {index}. Function was called {count} times'
+        elif array[mid] < searchedElement:
+            low = mid + 1
+            array = array[low:high]
+            index = index + mid + 1
+            #print('mayor',mid,index) ##test
+            return  binarySearch(array,searchedElement,count + 1, index)
         else:
+            index = 0 
+            #print('menor',index) ##test
             array = array[0:mid]
-            return binarySearch(array,value)    
+            
+            return binarySearch(array,searchedElement,count + 1,index)   
     else:
-        return 'not found'
+        return f'not found. Function was called {count} times'
+
 
 lenArray = 20
-searchedElement = 41
+searchedElement = 7
 
 #array = GenerateRandomArray(lenArray)
 array = [41,25,84,62,2,7,12,4,37,62,41,33,72,96,145,-20,-7,0] #array for test
