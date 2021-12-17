@@ -3,80 +3,101 @@ from nanoseconds import CurrentNanoSeconds
 from sorting import *
  
 
-def linearSearch(array,searchedElement):
+def linearSearch(array, searchedElement):
     for i in range(len(array)):
         if array[i] == searchedElement:
             indexSearch = i
             return indexSearch
 
-def binarySearch(array,searchedElement, count = 1, index = 0):
-    #print(array)
-    high = len(array)
-    mid = high//2
-    #print('comienzo',array[mid],mid) ##test
-    if high > 0:
+def binarySearch(array, searchedElement, index, high, count = 1):
+    if high >= index:
+        mid = index + (high - index) // 2
         if array[mid] == searchedElement:
-            index = index + mid 
-            return f'found at {index}. Function was called {count} times'
+            return f'found at {mid}. Function was called {count} times'
         elif array[mid] < searchedElement:
-            low = mid + 1
-            array = array[low:high]
-            index = index + mid + 1
-            #print('mayor',mid,index) ##test
-            return  binarySearch(array,searchedElement,count + 1, index)
+            newMid = mid + 1
+            return binarySearch(array, searchedElement, newMid, high, count + 1)
         else:
-            index = 0 
-            #print('menor',index) ##test
-            array = array[0:mid]
-            
-            return binarySearch(array,searchedElement,count + 1,index)   
+            newMid = mid - 1
+            return binarySearch(array, searchedElement, index, newMid, count + 1)
     else:
         return f'not found. Function was called {count} times'
 
-def binaryNonRecursive(array,searchedElement):
-    low = 0
-    high = len(array)
+def binaryNonRecursive(array, searchedElement, low, high):
 
     while high > low:
-        mid = (high+low)//2
+        mid = (high + low) // 2
         if array[mid] == searchedElement:
             return f'found at {mid}.'  
         elif array[mid] < searchedElement:
             low = mid + 1
         else:
             high = mid 
-    return f'not found'           
+    return f'not found' 
 
-def interpolationSearch(array,searchedElement):
+def interpolationSearch(array, searchedElement, low, high, count = 1):
+    
+    if high >= low and searchedElement >= array[low] and searchedElement <= array[high]:
+        index = low + ((searchedElement - array[low]) * (high - low)) // (array[high] - array[low])
+
+        if array[index] == searchedElement:
+            return f'found at {index}. Function was called {count} times'
+        elif array[index] < searchedElement:
+            newIndex = index + 1
+            return interpolationSearch(array, searchedElement, newIndex, high, count + 1)
+        else:
+            newIndex = index
+            return interpolationSearch(array, searchedElement, index, newIndex, count + 1)
+    else:
+        return f'not found. Function was called {count} times'    
+
+
+def interpolationNonRecursive(array, searchedElement):
     low = 0
     high = len(array) - 1
  
-    while (low <= high and searchedElement >= array[low] and searchedElement <= array[high]):
+    while (high >= low and searchedElement >= array[low] and searchedElement <= array[high]):
         # low < high para recorrer todo el array
         # elemento es mayor al minimo valor que tiene el array
         # elemento es menor al máximo valor que tiene el array
         # esto es así porque esta ordenado
         
-        index = low + ((searchedElement-sortedArray[low]) * (high - low)) // (sortedArray[high] - sortedArray[low])
+        # Formula derivada de la ecuación de una recta para 
+        # encontrar el elemento más próximo al elemento que quiero buscar
+
+        index = low + ((searchedElement - array[low]) * (high - low)) // (array[high] - array[low])
+        
+        # Si el elemento a buscar esta en el lugar del index, me quedo con ese valor  
         if array[index] == searchedElement:
             return f'found at {index}.'  
         elif array[index] < searchedElement:
+            # si el elemento que busco es mayor al elemento que esta en la ubicacion que obtengo 
+            # en la ecuación, empieza a buscar nuevamente por la parte derecha del array, por eso
+            # el comienzo del array estará desde el index + 1
             low = index + 1
         else:
+            # si el elemento que busco es menor al elemento que esta en la ubicacion que obtengo 
+            # en la ecuación, empieza a buscar nuevamente por la parte izquierda del array, por eso
+            # el comienzo del array sigue en el lugar inicial y el fin de array es en la posición del 
+            # index
             high = index   
     return f'not found'           
 
    
 
 lenArray = 20
-searchedElement = 140
+searchedElement = 72
 
 #array = GenerateRandomArray(lenArray)
 array = [41,25,84,62,2,7,12,4,37,62,41,33,72,96,145,-20,-7,0] #array for test
 
+n = len(array)
+
 sortedArray = InsertionSort(array) # sort array for binary search
 
-linearIndex = linearSearch(array,searchedElement)
+print(sortedArray)
+
+linearIndex = linearSearch(array, searchedElement)
 
 print('Linear Search Algorithm')
 
@@ -87,18 +108,24 @@ else:
 
 print('Binary Search Algorithm')
 
-binary = binarySearch(sortedArray,searchedElement)
+binary = binarySearch(sortedArray, searchedElement, 0, n)
 
 print(f'Value {searchedElement} is {binary}')
 
 print('Binary Non Recursive Algorithm')
 
-binaryNonRec = binaryNonRecursive(sortedArray,searchedElement)
+binaryNonRec = binaryNonRecursive(sortedArray, searchedElement, 0, n)
 
 print(f'Value {searchedElement} is {binaryNonRec}')
 
 print('Interpolation Search Algorithm')
 
-interpolation = interpolationSearch(sortedArray,searchedElement)
+interpolation = interpolationSearch(sortedArray, searchedElement, 0, n-1)
 
 print(f'Value {searchedElement} is {interpolation}')
+
+print('Interpolation Non Recursive Algorithm')
+
+interpolationNonRec = interpolationNonRecursive(sortedArray, searchedElement)
+
+print(f'Value {searchedElement} is {interpolationNonRec}')
