@@ -117,17 +117,17 @@ QuickSort(arrayQuick,0,len(arrayQuick)-1)
 end = CurrentNanoSeconds()
 executionTimeQuick = end-start
 
-print(f'Selection Sorted array: {arraySelectSort}')                
-print(f'Selection sorting took: {executionTimeSelec} seconds')
+# print(f'Selection Sorted array: {arraySelectSort}')                
+# print(f'Selection sorting took: {executionTimeSelec} seconds')
 
-print(f'Bubble Sorted array:{arrayBubbleSort}')
-print(f'Bubble sorting took: {executionTimeBubb} seconds')
+# print(f'Bubble Sorted array:{arrayBubbleSort}')
+# print(f'Bubble sorting took: {executionTimeBubb} seconds')
 
-print(f'Insertion Sorted array:{arrayInsertionSort}')
-print(f'Insertion sorting took: {executionTimeInser} seconds')
+# print(f'Insertion Sorted array:{arrayInsertionSort}')
+# print(f'Insertion sorting took: {executionTimeInser} seconds')
 
-print(f'Merge Sorted array: {arrayMergeSort}')                
-print(f'Merge sorting took: {executionTimeMerge} seconds')
+# print(f'Merge Sorted array: {arrayMergeSort}')                
+# print(f'Merge sorting took: {executionTimeMerge} seconds')
 
-print(f'Quick Sorted array: {arrayQuick}')                
-print(f'Quick sorting took: {executionTimeQuick} seconds')
+# print(f'Quick Sorted array: {arrayQuick}')                
+# print(f'Quick sorting took: {executionTimeQuick} seconds')
